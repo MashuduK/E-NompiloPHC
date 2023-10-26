@@ -1,0 +1,243 @@
+@page
+@using E_NompiloPHC.Models
+@model DoctorRegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.FirstName"></label>
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.LastName" class="form-control"  aria-required="true" />
+                    <label asp-for="Input.LastName"></label>
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <select asp-for="Input.Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" aria-required="true">
+                        <option value="-1">
+                            Select Gender
+                        </option>
+                    </select>
+                    <label asp-for="Input.Gender"></label>
+                    <span asp-validation-for="Input.Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.DOB" class="form-control" aria-required="true" />
+                <label asp-for="Input.DOB"></label>
+                <span asp-validation-for="Input.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Address" class="form-control" aria-required="true" />
+                <label asp-for="Input.Address"></label>
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Nationality" class="form-control" aria-required="true" />
+                <label asp-for="Input.Nationality"></label>
+                <span asp-validation-for="Input.Nationality" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Specialist" class="form-control" aria-required="true" />
+                <label asp-for="Input.Specialist"></label>
+                <span asp-validation-for="Input.Specialist" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Department" asp-items="@Html.GetEnumSelectList<Department>()" class="form-control" aria-required="true">
+                    <option value="-1">
+                        Select Department
+                    </option>
+                </select>
+                <label asp-for="Input.Department"></label>
+                <span asp-validation-for="Input.Department" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PictureUrl" class="form-control" aria-required="true" />
+                <label asp-for="Input.PictureUrl"></label>
+                <span asp-validation-for="Input.PictureUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2"><input type="checkbox" asp-for="Input.IsDoctor" class="form-check" aria-required="true" /></div>
+                    <div class="col-10"><label asp-for="Input.IsDoctor"></label></div>
+
+                </div>
+                <span asp-validation-for="Input.IsDoctor" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+
+</div>
+@*<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="~/style.css">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Doctor Regisration Form </title>
+</head>
+<body>
+    <div class="container">
+        <header>Registration</header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            
+                            <input type="text" asp-for="Input.FirstName" class="form-control" autocomplete="username" placeholder="Enter your name" aria-required="true" />
+                            <label asp-for="Input.FirstName"></label>
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="input-field">
+                            
+                            <input type="text" asp-for="Input.LastName" class="form-control" placeholder="Enter your surname" aria-required="true" />
+                            <label asp-for="Input.FirstName"></label>
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-field">
+                            
+                            <input  type="date" asp-for="Input.DOB" class="form-control" placeholder="Enter birth date" aria-required="true" />
+                            <label asp-for="Input.DOB"></label>
+                            <span asp-validation-for="Input.DOB" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.Email" class="form-control" placeholder="Enter your email" aria-required="true" />
+                            <label asp-for="Input.Email"></label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        
+
+                        <div class="input-field">
+                            <select asp-for="Input.Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" aria-required="true">
+                            <option value="-1">
+                                Select Gender
+                            </option>
+                            </select>
+                            <label asp-for="Input.Gender"></label>
+                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.Specialist" class="form-control" placeholder="Enter your specialist" aria-required="true" />
+                            <label asp-for="Input.Specialist"></label>
+                            <span asp-validation-for="Input.Specialist" class="text-danger"></span>
+                        </div>
+                        <div class="input-field">
+                            <select asp-for="Input.Department" asp-items="@Html.GetEnumSelectList<Department>()" class="form-control" aria-required="true">
+                                <option value="-1">
+                                    Select Department
+                                </option>
+                            </select>
+                            <label asp-for="Input.Department"></label>
+                            <span asp-validation-for="Input.Department" class="text-danger"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.Password" class="form-control" placeholder="Enter your password" aria-required="true" />
+                            <label asp-for="Input.Password"></label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm your password" aria-required="true" />
+                            <label asp-for="Input.ConfirmPassword"></label>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+
+            <div class="form second">
+                <div class="details address">
+                    <span class="title">Address Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.Address" class="form-control" laceholder="Enter mobile number" aria-required="true" />
+                            <label asp-for="Input.Address"></label>
+                            <span asp-validation-for="Input.Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.Nationality" class="form-control" placeholder="Enter nationality" aria-required="true" />
+                            <label asp-for="Input.Nationality"></label>
+                            <span asp-validation-for="Input.Nationality" class="text-danger"></span>
+                           
+                        </div>
+                        
+                        <div class="input-field">
+                            <input type="text" asp-for="Input.PictureUrl" class="form-control" placeholder="Upload picture" aria-required="true" />
+                            <label asp-for="Input.PictureUrl"></label>
+                            <span asp-validation-for="Input.PictureUrl" class="text-danger"></span>
+
+                        </div>
+                        <div class="input-field">
+                            <div class="row">
+                                <div class="col-2"><input type="checkbox" asp-for="Input.IsDoctor" class="form-check" aria-required="true" /></div>
+                                <div class="col-10"><label asp-for="Input.IsDoctor"></label></div>
+
+                            </div>
+                            <span asp-validation-for="Input.IsDoctor" class="text-danger"></span>
+                        </div>
+
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="~/script.js"></script>
+</body>
+</html>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

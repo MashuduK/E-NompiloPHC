@@ -1,0 +1,122 @@
+﻿@model PagedResult<E_NompiloPHC.ViewModels.BillViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                BillNumber
+            </th>
+            <th>
+                Patient
+            </th>
+            <th>
+                Insurance
+            </th>
+            <th>
+                DoctorCharge
+            </th>
+            <th>
+                MedicineCharge
+            </th>
+ <th>
+               RoomCharge
+            </th>
+            <th>
+                SessionCharge
+            </th>
+            <th>
+                NoOfDays
+            </th>
+            <th>
+                NursingCharge
+            </th>
+            <th>
+                LabCharge
+            </th>
+ <th>
+                Advance
+            </th>
+            <th>
+                TotalBill
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Insurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineCharge)
+            </td>
+<td>
+                @Html.DisplayFor(modelItem => item.RoomCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SessionCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NursingCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabCharge)
+            </td>
+<td>
+                @Html.DisplayFor(modelItem => item.Advance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalBill)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<cs-pager cs-paging-pagesize=(int)Model.PageSize
+          cs-paging-pagenumber=(int)Model.PageNumber
+          cs-paging-totalitems=(int)Model.TotalItems
+          cs-pagenumber-param="pageNumber"
+          asp-controller="Bill"
+
+          asp-action="Index"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-no-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link">
+          </cs-pager>
